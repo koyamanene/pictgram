@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to root_path, success: 'ログインに成功しました'
     else
-      flash.nom[:danger] = 'ログインに失敗しました'
+      flash.now[:danger] = 'ログインに失敗しました'
       render :new
     end
   end
@@ -23,14 +23,13 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
     end
     
-    def log_out(user)
+    def log_out
       session.delete(:user_id)
       @current_user = nil
     end
     
-    private
-      def session_params
-        params.permit(:session)
-      end
+    def session_params
+      params.permit(:session)
+    end
   
 end

@@ -7,4 +7,6 @@ class User < ApplicationRecord
     validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }, length: { in: 8..32 }
     
     has_many :topics
+    has_many :favorites
+    has_many :favorite_topics, through: :favorites, source: 'topic'
 end
